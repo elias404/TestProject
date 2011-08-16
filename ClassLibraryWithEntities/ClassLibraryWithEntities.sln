@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryWithEntities", "ClassLibraryWithEntities\ClassLibraryWithEntities.csproj", "{5A22E40A-576E-4692-9488-20BEE9DD315E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependantProject", "DependantProject\DependantProject.csproj", "{959AB708-E2EF-44E3-AB1E-2D9718EB761E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A22E40A-576E-4692-9488-20BEE9DD315E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A22E40A-576E-4692-9488-20BEE9DD315E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A22E40A-576E-4692-9488-20BEE9DD315E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A22E40A-576E-4692-9488-20BEE9DD315E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959AB708-E2EF-44E3-AB1E-2D9718EB761E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959AB708-E2EF-44E3-AB1E-2D9718EB761E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959AB708-E2EF-44E3-AB1E-2D9718EB761E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959AB708-E2EF-44E3-AB1E-2D9718EB761E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

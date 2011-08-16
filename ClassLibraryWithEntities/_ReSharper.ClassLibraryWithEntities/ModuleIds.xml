@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="5A22E40A-576E-4692-9488-20BEE9DD315E" ModuleId="ClassLibraryWithEntities" />
+  <Module PersistentId="959AB708-E2EF-44E3-AB1E-2D9718EB761E" ModuleId="DependantProject" />
+</Modules>

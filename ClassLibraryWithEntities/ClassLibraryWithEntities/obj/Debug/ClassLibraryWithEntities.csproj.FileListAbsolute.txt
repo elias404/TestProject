@@ -1,0 +1,6 @@
+c:\users\imakhayev\documents\visual studio 2010\Projects\ClassLibraryWithEntities\ClassLibraryWithEntities\bin\Debug\ClassLibraryWithEntities.dll.config
+c:\users\imakhayev\documents\visual studio 2010\Projects\ClassLibraryWithEntities\ClassLibraryWithEntities\bin\Debug\ClassLibraryWithEntities.dll
+c:\users\imakhayev\documents\visual studio 2010\Projects\ClassLibraryWithEntities\ClassLibraryWithEntities\bin\Debug\ClassLibraryWithEntities.pdb
+c:\users\imakhayev\documents\visual studio 2010\Projects\ClassLibraryWithEntities\ClassLibraryWithEntities\obj\Debug\ResolveAssemblyReference.cache
+c:\users\imakhayev\documents\visual studio 2010\Projects\ClassLibraryWithEntities\ClassLibraryWithEntities\obj\Debug\ClassLibraryWithEntities.dll
+c:\users\imakhayev\documents\visual studio 2010\Projects\ClassLibraryWithEntities\ClassLibraryWithEntities\obj\Debug\ClassLibraryWithEntities.pdb

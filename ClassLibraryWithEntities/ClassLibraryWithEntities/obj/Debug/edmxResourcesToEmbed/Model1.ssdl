@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MeerkatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MeerkatModelStoreContainer">
+    <EntitySet Name="Bloomberg_User" EntityType="MeerkatModel.Store.Bloomberg_User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tech_BLOB" EntityType="MeerkatModel.Store.Tech_BLOB" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tech_File" EntityType="MeerkatModel.Store.Tech_File" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Tech_File_Tech_BLOB" Association="MeerkatModel.Store.FK_Tech_File_Tech_BLOB">
+      <End Role="Tech_BLOB" EntitySet="Tech_BLOB" />
+      <End Role="Tech_File" EntitySet="Tech_File" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bloomberg_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UUID" Type="bigint" />
+    <Property Name="FirmNumber" Type="bigint" />
+    <Property Name="AccountNumber" Type="bigint" />
+    <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="EmailBloombergID" Type="bigint" Nullable="false" />
+    <Property Name="EmailCorporateID" Type="bigint" />
+    <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="PersonID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Tech_BLOB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="File" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Extension" Type="varchar" MaxLength="10" />
+    <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="Tech_File">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileID" Type="bigint" Nullable="false" />
+    <Property Name="Extension" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="512" />
+    <Property Name="Initialpath" Type="varchar" MaxLength="512" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Size" Type="int" />
+    <Property Name="AccessGroupID" Type="bigint" Nullable="false" />
+    <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <Association Name="FK_Tech_File_Tech_BLOB">
+    <End Role="Tech_BLOB" Type="MeerkatModel.Store.Tech_BLOB" Multiplicity="1" />
+    <End Role="Tech_File" Type="MeerkatModel.Store.Tech_File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tech_BLOB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tech_File">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

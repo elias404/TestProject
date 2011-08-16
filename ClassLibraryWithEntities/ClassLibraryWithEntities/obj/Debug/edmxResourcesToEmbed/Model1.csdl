@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MeerkatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="MeerkatEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bloomberg_User" EntityType="MeerkatModel.Bloomberg_User" />
+    <EntitySet Name="Tech_BLOB" EntityType="MeerkatModel.Tech_BLOB" />
+    <EntitySet Name="Tech_File" EntityType="MeerkatModel.Tech_File" />
+    <AssociationSet Name="FK_Tech_File_Tech_BLOB" Association="MeerkatModel.FK_Tech_File_Tech_BLOB">
+      <End Role="Tech_BLOB" EntitySet="Tech_BLOB" />
+      <End Role="Tech_File" EntitySet="Tech_File" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bloomberg_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="UUID" Type="Int64" />
+    <Property Name="FirmNumber" Type="Int64" />
+    <Property Name="AccountNumber" Type="Int64" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="EmailBloombergID" Type="Int64" Nullable="false" />
+    <Property Name="EmailCorporateID" Type="Int64" />
+    <Property Name="timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="PersonID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="Tech_BLOB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Binary" Name="File" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="Extension" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Tech_File" Relationship="MeerkatModel.FK_Tech_File_Tech_BLOB" FromRole="Tech_BLOB" ToRole="Tech_File" />
+  </EntityType>
+  <EntityType Name="Tech_File">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="FileID" Nullable="false" />
+    <Property Type="String" Name="Extension" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Initialpath" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Date" />
+    <Property Type="Int32" Name="Size" />
+    <Property Type="Int64" Name="AccessGroupID" Nullable="false" />
+    <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Tech_BLOB" Relationship="MeerkatModel.FK_Tech_File_Tech_BLOB" FromRole="Tech_File" ToRole="Tech_BLOB" />
+  </EntityType>
+  <Association Name="FK_Tech_File_Tech_BLOB">
+    <End Type="MeerkatModel.Tech_BLOB" Role="Tech_BLOB" Multiplicity="1" />
+    <End Type="MeerkatModel.Tech_File" Role="Tech_File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tech_BLOB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tech_File">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

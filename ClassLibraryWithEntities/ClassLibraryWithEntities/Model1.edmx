@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MeerkatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MeerkatModelStoreContainer">
+          <EntitySet Name="Bloomberg_User" EntityType="MeerkatModel.Store.Bloomberg_User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tech_BLOB" EntityType="MeerkatModel.Store.Tech_BLOB" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tech_File" EntityType="MeerkatModel.Store.Tech_File" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Tech_File_Tech_BLOB" Association="MeerkatModel.Store.FK_Tech_File_Tech_BLOB">
+            <End Role="Tech_BLOB" EntitySet="Tech_BLOB" />
+            <End Role="Tech_File" EntitySet="Tech_File" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bloomberg_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UUID" Type="bigint" />
+          <Property Name="FirmNumber" Type="bigint" />
+          <Property Name="AccountNumber" Type="bigint" />
+          <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="EmailBloombergID" Type="bigint" Nullable="false" />
+          <Property Name="EmailCorporateID" Type="bigint" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="PersonID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Tech_BLOB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="File" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Extension" Type="varchar" MaxLength="10" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Tech_File">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FileID" Type="bigint" Nullable="false" />
+          <Property Name="Extension" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="512" />
+          <Property Name="Initialpath" Type="varchar" MaxLength="512" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Size" Type="int" />
+          <Property Name="AccessGroupID" Type="bigint" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_Tech_File_Tech_BLOB">
+          <End Role="Tech_BLOB" Type="MeerkatModel.Store.Tech_BLOB" Multiplicity="1" />
+          <End Role="Tech_File" Type="MeerkatModel.Store.Tech_File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tech_BLOB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tech_File">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MeerkatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MeerkatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bloomberg_User" EntityType="MeerkatModel.Bloomberg_User" />
+          <EntitySet Name="Tech_BLOB" EntityType="MeerkatModel.Tech_BLOB" />
+          <EntitySet Name="Tech_File" EntityType="MeerkatModel.Tech_File" />
+          <AssociationSet Name="FK_Tech_File_Tech_BLOB" Association="MeerkatModel.FK_Tech_File_Tech_BLOB">
+            <End Role="Tech_BLOB" EntitySet="Tech_BLOB" />
+            <End Role="Tech_File" EntitySet="Tech_File" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bloomberg_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UUID" Type="Int64" />
+          <Property Name="FirmNumber" Type="Int64" />
+          <Property Name="AccountNumber" Type="Int64" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="EmailBloombergID" Type="Int64" Nullable="false" />
+          <Property Name="EmailCorporateID" Type="Int64" />
+          <Property Name="timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PersonID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Tech_BLOB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Binary" Name="File" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Extension" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Tech_File" Relationship="MeerkatModel.FK_Tech_File_Tech_BLOB" FromRole="Tech_BLOB" ToRole="Tech_File" />
+        </EntityType>
+        <EntityType Name="Tech_File">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="FileID" Nullable="false" />
+          <Property Type="String" Name="Extension" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Initialpath" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date" />
+          <Property Type="Int32" Name="Size" />
+          <Property Type="Int64" Name="AccessGroupID" Nullable="false" />
+          <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Tech_BLOB" Relationship="MeerkatModel.FK_Tech_File_Tech_BLOB" FromRole="Tech_File" ToRole="Tech_BLOB" />
+        </EntityType>
+        <Association Name="FK_Tech_File_Tech_BLOB">
+          <End Type="MeerkatModel.Tech_BLOB" Role="Tech_BLOB" Multiplicity="1" />
+          <End Type="MeerkatModel.Tech_File" Role="Tech_File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tech_BLOB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tech_File">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MeerkatModelStoreContainer" CdmEntityContainer="MeerkatEntities">
+          <EntitySetMapping Name="Bloomberg_User"><EntityTypeMapping TypeName="MeerkatModel.Bloomberg_User"><MappingFragment StoreEntitySet="Bloomberg_User">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Login" ColumnName="Login" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="UUID" ColumnName="UUID" />
+            <ScalarProperty Name="FirmNumber" ColumnName="FirmNumber" />
+            <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+            <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+            <ScalarProperty Name="EmailBloombergID" ColumnName="EmailBloombergID" />
+            <ScalarProperty Name="EmailCorporateID" ColumnName="EmailCorporateID" />
+            <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+            <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tech_BLOB">
+            <EntityTypeMapping TypeName="MeerkatModel.Tech_BLOB">
+              <MappingFragment StoreEntitySet="Tech_BLOB">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tech_File">
+            <EntityTypeMapping TypeName="MeerkatModel.Tech_File">
+              <MappingFragment StoreEntitySet="Tech_File">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="AccessGroupID" ColumnName="AccessGroupID" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Initialpath" ColumnName="Initialpath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="MeerkatModel.Bloomberg_User" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9070849609374996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeerkatModel.Tech_BLOB" Width="1.5" PointX="3.375" PointY="1.375" Height="1.7566536458333335" />
+        <EntityTypeShape EntityType="MeerkatModel.Tech_File" Width="1.5" PointX="5.625" PointY="1" Height="2.5783902994791656" />
+        <AssociationConnector Association="MeerkatModel.FK_Tech_File_Tech_BLOB" >
+          <ConnectorPoint PointX="4.875" PointY="2.2533268229166667" />
+          <ConnectorPoint PointX="5.625" PointY="2.2533268229166667" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
